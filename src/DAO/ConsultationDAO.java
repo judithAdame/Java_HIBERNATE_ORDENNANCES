@@ -8,7 +8,7 @@ import entities.Dossierpatient;
 import entities.Ordonnance;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
+import java.util.Set; 
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
