@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2019-04-17 16:56:23 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entities.Ordonnancemedicaments" table="ORDONNANCEMEDICAMENTS" schema="H19A10TEAM1" optimistic-lock="version">
+        <composite-id name="id" class="entities.OrdonnancemedicamentsId">
+            <key-property name="numord" type="int">
+                <column name="NUMORD" precision="5" scale="0" />
+            </key-property>
+            <key-property name="idmed" type="int">
+                <column name="IDMED" precision="5" scale="0" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="medicament" class="entities.Medicament" update="false" insert="false" fetch="select">
+            <column name="IDMED" precision="5" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="ordonnance" class="entities.Ordonnance" update="false" insert="false" fetch="select">
+            <column name="NUMORD" precision="5" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="nbboites" type="java.lang.Byte">
+            <column name="NBBOITES" precision="2" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

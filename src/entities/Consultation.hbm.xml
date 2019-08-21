@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2019-04-17 16:56:23 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entities.Consultation" table="CONSULTATION" schema="H19A10TEAM1" optimistic-lock="version">
+        <composite-id name="id" class="entities.ConsultationId">
+            <key-property name="codedocteur" type="string">
+                <column name="CODEDOCTEUR" length="10" />
+            </key-property>
+            <key-property name="numdos" type="string">
+                <column name="NUMDOS" length="10" />
+            </key-property>
+            <key-property name="datec" type="date">
+                <column name="DATEC" length="7" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="docteur" class="entities.Docteur" update="false" insert="false" fetch="select">
+            <column name="CODEDOCTEUR" length="10" not-null="true" />
+        </many-to-one>
+        <many-to-one name="dossierpatient" class="entities.Dossierpatient" update="false" insert="false" fetch="select">
+            <column name="NUMDOS" length="10" not-null="true" />
+        </many-to-one>
+        <many-to-one name="ordonnance" class="entities.Ordonnance" fetch="select">
+            <column name="NUMORD" precision="5" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="diagnostic" type="string">
+            <column name="DIAGNOSTIC" length="80" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2019-04-17 16:56:23 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entities.Specialite" table="SPECIALITE" schema="H19A10TEAM1" optimistic-lock="version">
+        <id name="code" type="short">
+            <column name="CODE" precision="3" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="titre" type="string">
+            <column name="TITRE" length="30" not-null="true" />
+        </property>
+        <property name="description" type="string">
+            <column name="DESCRIPTION" length="150" />
+        </property>
+        <set name="docteurs" table="DOCTEUR" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="SPECIALITE" precision="3" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="entities.Docteur" />
+        </set>
+    </class>
+</hibernate-mapping>

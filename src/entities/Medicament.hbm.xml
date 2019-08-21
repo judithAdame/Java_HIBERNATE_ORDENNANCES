@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2019-04-17 16:56:23 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entities.Medicament" table="MEDICAMENT" schema="H19A10TEAM1" optimistic-lock="version">
+        <id name="idmed" type="int">
+            <column name="IDMED" precision="5" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="categorie" class="entities.Categorie" fetch="select">
+            <column name="CATEGORIE" precision="2" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="nommed" type="string">
+            <column name="NOMMED" length="40" not-null="true" />
+        </property>
+        <property name="prix" type="big_decimal">
+            <column name="PRIX" precision="7" />
+        </property>
+        <set name="ordonnancemedicamentses" table="ORDONNANCEMEDICAMENTS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDMED" precision="5" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="entities.Ordonnancemedicaments" />
+        </set>
+    </class>
+</hibernate-mapping>

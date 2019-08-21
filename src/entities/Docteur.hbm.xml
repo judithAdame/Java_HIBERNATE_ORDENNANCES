@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2019-04-17 16:56:23 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entities.Docteur" table="DOCTEUR" schema="H19A10TEAM1" optimistic-lock="version">
+        <id name="matricule" type="string">
+            <column name="MATRICULE" length="10" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="specialite" class="entities.Specialite" fetch="select">
+            <column name="SPECIALITE" precision="3" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="nomm" type="string">
+            <column name="NOMM" length="20" not-null="true" />
+        </property>
+        <property name="prenomm" type="string">
+            <column name="PRENOMM" length="20" not-null="true" />
+        </property>
+        <property name="ville" type="string">
+            <column name="VILLE" length="25" />
+        </property>
+        <property name="adresse" type="string">
+            <column name="ADRESSE" length="50" />
+        </property>
+        <property name="niveau" type="string">
+            <column name="NIVEAU" length="10" />
+        </property>
+        <property name="nbrpatients" type="java.lang.Short">
+            <column name="NBRPATIENTS" precision="3" scale="0" />
+        </property>
+        <set name="dossierpatients" table="DOSSIERPATIENT" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="MATRICULE" length="10" not-null="true" />
+            </key>
+            <one-to-many class="entities.Dossierpatient" />
+        </set>
+        <set name="consultations" table="CONSULTATION" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="CODEDOCTEUR" length="10" not-null="true" />
+            </key>
+            <one-to-many class="entities.Consultation" />
+        </set>
+    </class>
+</hibernate-mapping>
